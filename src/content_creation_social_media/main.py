@@ -19,12 +19,17 @@ def run():
     Run the crew.
     """
     inputs = {
-        'subject': 'Predict the top ten performance breakout stocks in the AI Agent field in 2025'
+        'subject': 'deepseek模式的成功对于Nvidia股价的潜在影响"'
     }
     
     try:
+        print("Starting crew execution...")
         result = ContentCreationSocialMedia().crew().kickoff(inputs=inputs)
     except Exception as e:
+        print(f"Error details: {str(e)}")
+        print(f"Error type: {type(e)}")
+        if hasattr(e, '__cause__'):
+            print(f"Caused by: {e.__cause__}")
         raise Exception(f"An error occurred while running the crew: {e}")
     
     posts = result.pydantic.dict()['social_media_posts']
